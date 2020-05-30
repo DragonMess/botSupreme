@@ -1,0 +1,17 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #2F303A;
+}
+header{
+    margin:15px;
+    text-align: center;
+}
+#logo{
+    height: 100px;
+}
+.container{
+    max-width: 80%;
+    text-align: center;
+    color: white;
+}

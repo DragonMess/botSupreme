@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <img id="logo" src="images/1200px-Supreme_Logo.svg.png" alt="" />
+    </header>
+    <div class="container">
+      <form action="/search" method="POST">
+        
+        <label>Category</label>
+        <input list="categories" name="category" />
+        <datalist id="categories">
+          <option value="jackets"> </option>
+          <option value="shirts"> </option>
+          <option value="tops/sweaters"> </option>
+          <option value="sweatshirts"> </option>
+          <option value="pants"> </option>
+          <option value="shorts"> </option>
+          <option value="hats"> </option>
+          <option value="bags"> </option>
+          <option value="accessories"> </option>
+          <option value="shoes"> </option>
+          <option value="skate"> </option>
+        </datalist>
+        <br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Name Item">
+        <br>
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" placeholder="Color Item">
+        <br>
+        <label>Size</label>
+        <input list="sizes" name="size" />
+        <datalist id="sizes">
+          <option value="Small"> </option>
+          <option value="Medium"> </option>
+          <option value="Large"> </option>
+          <option value="XLarge"> </option>
+        </datalist>
+        <br>
+
+        <input type="submit" />
+        <a hidden class="" href="https://www.supremenewyork.com/shop/all/" ></a>
+      
+      </form>
+    </div>
+  </body>
+</html>
