@@ -27,7 +27,7 @@ app.post("/search", (req, res) => {
   let size = req.body.size;
 
   let fs = require("fs");
-  let url = "https://www.supremenewyork.com/shop/";
+  let url = "https://www.supremenewyork.com/shop/all/";
 
   request(`${url}${category}`, (error, response, body) => {
     console.log("error:", error); // Print the error if one occurred
@@ -38,23 +38,30 @@ app.post("/search", (req, res) => {
     //     if (err) throw err;
     //     console.log('path/file.txt was deleted');
     //   });
-
+    var fs = require('fs')
     // create a file html from url
-    fs.writeFile("indexto.html", body, function (err) {
+    fs.writeFile(`index-${category}.html`, body, function (err) {
+      if (!err) {
+        console.log("Saved!");
+        // reaplace tag </body> to <script> find id </script> </body>
+        fs.readFile(`index-${category}.html`, "utf8", function (err, data) {
+          if (err) {
+            return console.log(err);
+          }
+          let replacement = "<script> window.onload = function() { // same as window.addEventListener('load', (event) => {alert('Page loaded');};</script></body>";
+          let toReplace = 'body';
+          var result = data.replace("</body>", replacement);
+          var regex = /(<([^>]+)>)/ig;
+
+          fs.writeFile(`index-${category}.html`, result, "utf8", function (
+            err
+          ) {
+            if (err) return console.log(err);
+          });
+        });
+      }
       if (err) throw err;
-      console.log("Saved!");
-    });
-  });
-
-  // reaplace tag </body> to <script> find id </script> </body>
-  fs.readFile(someFile, "utf8", function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    var result = data.replace(/string to be replaced/g, "replacement");
-
-    fs.writeFile(someFile, result, "utf8", function (err) {
-      if (err) return console.log(err);
+      //   console.log("Saved!");
     });
   });
 
