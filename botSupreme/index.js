@@ -48,7 +48,21 @@ app.post("/search", (req, res) => {
           if (err) {
             return console.log(err);
           }
-          let replacement = "<script> window.onload = function() { // same as window.addEventListener('load', (event) => {alert('Page loaded');};</script></body>";
+          let search = `window.onload = function() {
+                        alert('Page loaded');
+                        var aTags = document.getElementsByTagName("a");
+                        var searchText = '${name}';
+                        var found;
+
+                        for (var i = 0; i < aTags.length; i++) {
+                        if (aTags[i].textContent == searchText) {
+                         found = aTags[i];
+                         break;
+                         }
+                        }
+                        console.log(found);
+                        };`;
+          let replacement = `<script>${search}</script></body>`;
           let toReplace = 'body';
           var result = data.replace("</body>", replacement);
           var regex = /(<([^>]+)>)/ig;
