@@ -50,17 +50,29 @@ app.post("/search", (req, res) => {
           }
           let search = `window.onload = function() {
                         alert('Page loaded');
-                        var aTags = document.getElementsByTagName("a");
-                        var searchText = '${name}';
-                        var found;
+                        let aTags = document.getElementsByTagName("a");
+                        let searchName = '${name}';
+                        let searchColor = '${color}';
+                        let found;
+                        let productName = [];
+                        let productColor = [];
 
-                        for (var i = 0; i < aTags.length; i++) {
-                        if (aTags[i].textContent == searchText) {
-                         found = aTags[i];
-                         break;
+                        for (let i = 0; i < aTags.length; i++) {
+                        if (aTags[i].textContent == searchName) {
+                         productName.push(aTags[i].getAttribute("href"));
+                         }
+
+                        }
+                        for (let j = 0; j < aTags.length; j++) {
+                        if (aTags[j].textContent == searchColor) {
+                         productColor.push(aTags[j].getAttribute("href"));
                          }
                         }
-                        console.log(found);
+
+                        productNameColory = productColor.filter(function(item) {
+                          return productName.includes(item); 
+                        })
+                        console.log("aqui esta",productNameColory);
                         };`;
           let replacement = `<script>${search}</script></body>`;
           let toReplace = 'body';
